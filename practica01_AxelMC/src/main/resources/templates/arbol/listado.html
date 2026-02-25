@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<section th:fragment="listadoArboles" id="arboles">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr><th>#</th><th>Nombre</th><th>Tipo Flor</th><th>Acciones</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="arbol, contador : ${arboles}">
+                            <td>[[${contador.count}]]</td>
+                            <td>[[${arbol.nombreComun}]]</td>
+                            <td>[[${arbol.tipoFlor}]]</td>
+                            <td>
+                                <a th:href="@{/arbol/eliminar/}+${arbol.idArbol}" class="btn btn-danger">Eliminar</a>
+                                <a th:href="@{/arbol/modificar/}+${arbol.idArbol}" class="btn btn-success">Modificar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
