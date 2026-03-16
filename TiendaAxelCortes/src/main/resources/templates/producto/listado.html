@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{general/fragmentos :: head}"/>
+
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"/>
+
+        <section th:replace="~{producto/fragmentos :: agregar}"/>
+        <section th:replace="~{producto/fragmentos :: listado}"/>
+        <section th:replace="~{producto/fragmentos :: confirmarEliminar}"/>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"/>
+        
+        <footer th:replace="~{general/fragmentos :: footer}"/>
+
+        <script>
+            var confirmModal = document.getElementById('confirmModal');
+            if (confirmModal) {
+                confirmModal.addEventListener('show.bs.modal', function (event) {
+                    // 1. Detecta qué botón abrió la modal
+                    var button = event.relatedTarget;
+                    
+                    // 2. Extrae el ID y la descripción del producto
+                    var idProducto = button.getAttribute('data-bs-id');
+                    var descripcion = button.getAttribute('data-bs-descripcion');
+                    
+                    // 3. Busca los elementos dentro del modal y les asigna los valores
+                    var inputId = confirmModal.querySelector('#modalId');
+                    var spanDescripcion = confirmModal.querySelector('#modalDescripcion');
+                    
+                    if(inputId) inputId.value = idProducto;
+                    if(spanDescripcion) spanDescripcion.textContent = descripcion;
+                });
+            }
+        </script>
+    </body>
+</html>

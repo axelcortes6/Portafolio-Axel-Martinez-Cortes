@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head th:replace="~{general/fragmentos :: head}"/>
+
+    <body>
+        <header th:replace="~{general/fragmentos :: header}"/>
+
+        <section th:replace="~{categoria/fragmentos :: agregar}"/>
+        <section th:replace="~{categoria/fragmentos :: listado}"/>
+        <section th:replace="~{categoria/fragmentos :: confirmarEliminar}"/>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"/>
+        <section th:replace="~{categoria/fragmentos :: confirmarEliminar}"/>
+        
+        <footer th:replace="~{general/fragmentos :: footer}"/>
+
+        <script>
+            var confirmModal = document.getElementById('confirmModal');
+            if (confirmModal) {
+                confirmModal.addEventListener('show.bs.modal', function (event) {
+                    // 1. Detecta qué botón abrió la modal
+                    var button = event.relatedTarget;
+                    // 2. Extrae el ID de ese botón específico
+                    var idCategoria = button.getAttribute('data-bs-id');
+                    // 3. Busca el input oculto dentro de la modal y le pone el ID
+                    var inputId = confirmModal.querySelector('#modalId');
+                    inputId.value = idCategoria;
+                });
+            }
+        </script>
+    </body>
+</html>
